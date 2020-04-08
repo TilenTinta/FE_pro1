@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <script>
+           stevilo1 = 100;
+           stevilo2 = 0;
+           vsota1=0;
+           vsota2=0;
+           st1=0;
+           st2=0;
+           stevilo_staro = 0;
+           while(stevilo1<10001){
+            //Prvo stevilo
+                for(n=0;n<stevilo1;n++){
+                    if (stevilo1%n==0){
+                        st1=n;
+                        vsota1=vsota1+st1; 
+                    }
+                }
+                //Iskanje drugega stevila
+                for(n=0;n<10001;n++){
+                    if (vsota1%n==0){
+                        if(n<vsota1){
+                        st2=n;
+                        //console.log(st2);
+                        vsota2=vsota2+st2;
+                        } 
+                    }
+                }
+                
+            //Preverjanje
+                if (stevilo1 == vsota2 && stevilo1 != vsota1){
+                    
+                    
+                    if (stevilo_staro != stevilo1){
+                        stevilo_staro = vsota1;
+                        //console.log(stevilo_staro);
+                        console.log("Prijateljski števili sta:",stevilo1,vsota1); //vsota2 za pomoč pri pregledu števil
+                    }
+                }
+            vsota1=0;
+            vsota2=0;
+            st1=0;
+            st2=0;
+            stevilo1=stevilo1+1;    
+            }
+        </script>
+    </body>
+</html>

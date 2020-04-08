@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <script>
+        //Tabela za šifriranje
+        CHARTABLE = [ 'a', 'b', 'c', 'č', 'd',
+                    'e', 'f', 'g', 'h', 'i',
+                    'j', 'k', 'l', 'm', 'n',
+                    'o', 'p', 'r', 's', 'š',
+                    't', 'u', 'v', 'z', 'ž','_', 0];
+
+        //Šifriran tekst
+        PLAIN_MESSAGE = ['p','r','e','m','i','k','_',
+                        'v','s','e','h','_',
+                        'e','n','o','t','_',
+                        'i','z','_',
+                        'b','r','e','t','a','n','i','j','e','_',
+                        'v','_',
+                        'g','a','l','i','j','o','_',
+                        't','a','k','o','j','_',
+                        'c','a','e','s','a','r',0];            
+                        
+        for(n=0;n<100;n++){ 
+            for(x=0;x<26;x++){
+            if (CHARTABLE[x]== PLAIN_MESSAGE[n]){
+                x=x+3;
+                if(x==28){
+                    x=2;
+                }
+                if(x==27){
+                    x=1;
+                }
+                if(x==26){
+                    x=0;
+                }
+                 console.log(CHARTABLE[x],x,PLAIN_MESSAGE[n]); //Končni izpis            
+                 break;
+            }
+            }  
+        }
+        console.log()
+
+        //console.log(CHARTABLE);
+        //console.log(PLAIN_MESSAGE);
+        //console.log(KODA);
+      
+        
+        </script>
+    </body>
+</html>

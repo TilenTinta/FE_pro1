@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <script>
+        polozaj = [50.5, 50.5];
+        dimenzija_tabele = 100;
+        Q = 1;
+        tab = [];
+        tabela = [];
+        x = 0;
+        y = 0;
+        console.log(tab);
+
+        // Racunanje vrednosti podanih tock
+        function RazdaljaTock(polozaj) { //Tu spremenim želeno točko za računanje diagonale 
+            var x = 0;
+            var y = 1;
+            diagonala = Math.sqrt(Math.pow((x - polozaj[0]), 2) + Math.pow((y - polozaj[1]), 2));
+            return diagonala;
+        }
+
+        function PotencialTocke(polozaj) { //Tu spremenim želeno točko za računanje diagonale 
+            PotencialTocke = Q / (4 * Math.PI * (8.854 * Math.pow(10, -12)) * RazdaljaTock(polozaj));
+            return PotencialTocke;
+        }
+
+        console.log("Potencial:", PotencialTocke(polozaj));
+        console.log("Razdalja:", RazdaljaTock(polozaj));
+
+
+        // Racunanje vrednosti vseh tock
+        for (y = 0; y < dimenzija_tabele; y++) {
+            tab1 = [];
+            tabela[y] = [];
+            for (x = 0; x < dimenzija_tabele; x++) {
+                r = RazdaljaVseh(polozaj, x, y);
+                tabela[y][x] = VrednostPotenciala(Q, r);
+                tab1.push(r);
+            }
+            tab.push(tab1);
+        }
+
+        function RazdaljaVseh(polozaj, x, y) {
+            diagonala = Math.sqrt(Math.pow((x - polozaj[0]), 2) + Math.pow((y - polozaj[1]), 2));
+            return diagonala;
+        }
+
+        function VrednostPotenciala(Q, r) {
+            Potencial = Q / (4 * Math.PI * (8.854 * Math.pow(10, -12))*RazdaljaVseh(polozaj,x,y));
+            return Potencial;
+        }
+
+        pokaziPotenciale(tabela, dimenzija_tabele);
+
+        ////////////KONEC MOJEGA PROGRAMA /////////////
+
+        // Koda za izris potenciala
+        function pokaziPotenciale(tabela, canvdim) {
+
+            // Ustvarimo canvas in ga pripnemo k <body>. Rojec. 
+            var canv = document.createElement('canvas');
+            canv.id = "polje";
+            canv.width = canvdim;
+            canv.height = canvdim;
+            document.body.appendChild(canv);
+
+            // Kunaver.
+            var maxRow = tabela.map(function (row) {
+                return Math.max.apply(Math, row);
+            });
+            var max = Math.max.apply(null, maxRow);
+
+            var minRow = tabela.map(function (row) {
+                return Math.min.apply(Math, row);
+            });
+            var min = Math.min.apply(null, minRow);
+
+            var paleta = ["#E5000A", "#DF000E", "#D90113", "#D30117", "#CD021C", "#C70321", "#C10325", "#BB042A", "#B6042F", "#B00533", "#AA0638",
+                "#A4063D", "#9E0741", "#980846", "#92084A", "#8C094F", "#870954", "#810A58", "#7B0B5D", "#750B62", "#6F0C66", "#690C6B", "#630D70",
+                "#5D0E74", "#580E79", "#520F7E", "#4C1082", "#461087", "#40118B", "#3A1190", "#341295", "#2E1399", "#29139E", "#2314A3", "#1D14A7",
+                "#1715AC", "#1116B1", "#0B16B5", "#0517BA", "#0018BF"];
+
+            kocka_size = 1;
+
+            var korak = (paleta.length - 1) / (Math.log(max) - Math.log(min));
+
+            var offset = -korak * Math.log(min);
+
+            for (var i = 0; i < canvdim; i++) {
+                for (var j = 0; j < canvdim; j++) {
+                    val = tabela[i][j];
+                    m = korak * Math.log(val) + offset;
+                    m = Math.round(m);
+                    var c = document.getElementById("polje");
+                    var ctx = c.getContext("2d");
+                    //console.log(m);
+                    ctx.fillStyle = paleta[m];
+                    ctx.fillRect(j * kocka_size, i * kocka_size, kocka_size, kocka_size);
+                }
+            }
+
+            // Rojec.
+            if (0) {
+                // Izrisi legendo barv
+                var div = document.createElement('div');
+                div.innerHTML = "Legenda barv [potencial/V]:";
+                document.body.appendChild(div);
+
+                // Barve:
+                for (i = 0; i < paleta.length; i++) {
+                    var div = document.createElement('div');
+                    div.style = "width:200px; background-color:" + paleta[i];
+                    //div.style += "max-width:300px;";
+                    //div.innerHTML=korak*i;
+                    div.innerHTML = Math.exp((i - offset) / korak);
+                    document.body.appendChild(div);
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>

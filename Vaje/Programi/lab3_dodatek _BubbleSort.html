@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <script>
+        polje=[];
+        stevilka_ok = 0;
+        for(n=0;n<7;n++){
+            stevilka = Math.floor(Math.random() * 39) + 1;
+            for(x=0;x<7;x++){
+                if (polje[x] == stevilka){ 
+                    //console.log(x);
+                    //console.log(stevilka);
+                    stevilka_ok = stevilka;
+                    while(stevilka_ok == stevilka){
+                        stevilka = Math.floor(Math.random() * 39) + 1;
+                    }
+                }      
+            }
+            polje.push(stevilka);
+        }
+        for(a=0;a<n-1;a++)
+            for(b=0;b<n-a-1;b++)
+                if(polje[b]>polje[b+1])
+                {
+                    trenutno = polje[b];
+                    polje[b] = polje[b+1];
+                    polje[b+1] = trenutno;
+                }
+        console.log(polje);
+        </script>
+    </body>
+</html>

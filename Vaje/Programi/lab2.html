@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <script>
+            stevilo1 = 220;
+            stevilo2 = 284;
+            vsota1=0;
+            vsota2=0;
+            st1=0;
+            st2=0;
+            console.log("Deljitelji" ,stevilo1, "so:");
+            for(n=0;n<stevilo1;n++){
+                if (stevilo1%n==0){
+                    st1=n;
+                    console.log(st1);
+                    vsota1=vsota1+st1;
+
+                }
+            }
+            console.log("Vsota deljiteljev je:", vsota1);
+            //console.log(vsota1);
+
+
+            console.log("Deljitelji" ,stevilo2, "so:");
+            for(n=0;n<stevilo2;n++){
+                if (stevilo2%n==0){
+                    st2=n;
+                    console.log(st2);
+                    vsota2=vsota2+st2;
+
+                }
+            }
+            console.log("Vsota deljiteljev je:", vsota2);
+            //console.log(vsota2);
+
+            if (stevilo1 == vsota2 && stevilo2 == vsota1){
+                console.log("Števili sta prijateljski");
+            }else{
+                console.log("Števili nista prijateljski");
+            }
+        
+        </script>
+    </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <script>
+        ch_koda = 0;
+        ch_st = 0;
+        g = 0;
+        z = 0;
+        x= 0;
+        stevec = 0;
+        vsota = 0;
+
+        ABECEDA = ['a', 'b', 'c', 'č', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 'š', 't', 'u', 'v', 'z', 'ž', '_'];
+
+        CHARTABLE = ['a', 'b', 'c', 'č', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 'š', 't', 'u', 'v', 'z', 'ž', '_'];
+
+        //Šifriran tekst
+        
+        PLAIN_MESSAGE = ['p', 'r', 'e', 'm', 'i', 'k', '_',
+            'v', 's', 'e', 'h', '_',
+            'e', 'n', 'o', 't', '_',
+            'i', 'z', '_',
+            'b', 'r', 'e', 't', 'a', 'n', 'i', 'j', 'e', '_',
+            'v', '_',
+            'g', 'a', 'l', 'i', 'j', 'o', '_',
+            't', 'a', 'k', 'o', 'j', '_',
+            'c', 'a', 'e', 's', 'a', 'r', 0];
+           
+        //PLAIN_MESSAGE = ['p', 'r', 'i', 'm', 'i', 't', 'e', 'o', 'b', 'e', 'l', 'i', 'k', 's', 'a', 0]; // Testni tekst kot v nalogi
+
+        KODA = ['a', 'm', 'f', 'o', 'r', 'a', 0];
+
+        for (n = 0; n < 100; n++) {
+            for (x = 0; x < 26; x++) {
+                if (ABECEDA[x] == PLAIN_MESSAGE[n]) {
+                    ch_st = x;
+                    for (z = 0; z < 26; z++) {
+                        if (ABECEDA[z] == KODA[stevec]) {
+                            ch_koda = z;
+                            test = 1;
+                        }
+                    }
+                    vsota = ch_st + ch_koda;
+
+                    if (stevec == 6) {
+                        stevec = 0;
+                    }
+                    if (vsota >= 26) {
+                        vsota = vsota - 26;
+                    }
+                    console.log(PLAIN_MESSAGE[n], "-", ch_st, KODA[stevec], "-", ch_koda, "   ", ABECEDA[vsota]);
+                    stevec = stevec + 1;
+                    break;
+                }
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
